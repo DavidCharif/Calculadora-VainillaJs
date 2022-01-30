@@ -1,0 +1,186 @@
+
+
+.theme-one {
+  --mainBackground: hsl(222, 26%, 31%);
+  --keypadBackground: hsl(223, 31%, 20%);
+  --screenBackground: hsl(224, 36%, 15%);
+  /* keys - bottones */
+  --keyDelResetBackground: hsl(225, 21%, 49%);
+  --keyDelResetShadow: hsl(224, 28%, 35%);
+  --keyEqualBackground: hsl(6, 63%, 50%);
+  --keyEqualRedShadow: hsl(6, 70%, 34%);
+  --keyBackground: hsl(30, 25%, 89%);
+  --keyShadow: hsl(28, 16%, 65%);
+  /* text */
+  --keyText: hsl(60, 10%, 19%);
+  --keyInput: rgb(255,255,255);
+  --delResetText: rgb(255, 255, 255);
+  --equalKey : rgb(255,255,255);
+}
+.theme-two {
+  --mainBackground: hsl(0, 0%, 90%);
+  --keypadBackground: hsl(0, 5%, 81%);
+  --screenBackground: hsl(0, 0%, 93%);
+  /* keys - bottones */
+  --keyDelResetBackground: hsl(185, 42%, 37%);
+  --keyDelResetShadow: hsl(185, 58%, 25%);
+  --keyEqualBackground: hsl(25, 98%, 40%);
+  --keyEqualRedShadow: hsl(25, 99%, 27%);
+  --keyBackground: hsl(45, 7%, 89%);
+  --keyShadow: hsl(35, 11%, 61%);
+  /* text */
+  --keyInput: hsl(60, 10%, 19%);
+  --keyText: hsl(60, 10%, 19%);
+  --whitekeyText: hsl(60, 10%, 19%);
+  --delResetText: hsl(0, 0%, 100%);
+  --equalKey : rgb(255,255,255);
+}
+.theme-three {
+  --mainBackground: hsl(268, 75%, 9%);
+  --keypadBackground: hsl(268, 71%, 12%);
+  --screenBackground: hsl(268, 71%, 12%);
+  /* keys - bottones */
+  --keyDelResetBackground:  hsl(281, 89%, 26%);
+  --keyDelResetShadow: hsl(285, 91%, 52%);
+  --keyEqualBackground: hsl(176, 100%, 44%);
+  --keyEqualRedShadow: hsl(177, 92%, 70%);
+  --keyBackground: hsl(268, 47%, 21%);
+  --keyShadow: hsl(290, 70%, 36%);
+  /* text */
+  --keyInput : hsl(52, 100%, 62%);
+  --keyText: hsl(52, 100%, 62%);
+  --delResetText: hsl(0, 0%, 100%);
+  --equalKey : hsl(198, 20%, 13%);
+}
+
+body {
+  background-color: var(--mainBackground);
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+}
+@media only screen and (max-width: 600px) {
+  .calculadora{
+  width : 375px;
+}
+#input{
+  width: 375px;
+}
+.texto {
+  font-size: 36px;
+}
+}
+
+.calculadora {
+  display: flexbox;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.del,
+.reset {
+  background-color: var(--keyDelResetBackground) !important;
+  box-shadow: 0px 5px 1px var(--keyDelResetShadow) !important;
+}
+.del, .reset ,.equal {
+   color: var(--delResetText) !important;
+   font-size: 15px !important;
+}
+
+
+.equal {
+  color: var(--equalKey) !important;
+  background-color: var(--keyEqualBackground) !important;
+  box-shadow: 0px 5px 1px var(--keyEqualRedShadow) !important;
+  /* color: var(--delResetText) !important; */
+  
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color: var(--keypadBackground);
+  text-align: center;
+  row-gap: 20px;
+  gap: 20px;
+  padding: 30px;
+  border-radius: 15px;
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+}
+
+.grid-container > div {
+  background-color: var(--keyBackground);
+  box-shadow: 0px 5px 1px var(--keyShadow);
+  color: var(--keyText);
+  border-radius: 12px;
+  border: 50px;
+  padding: 15px;
+  min-width: 60px;
+  min-height: 10px;
+  cursor:pointer;
+  caret-color: transparent;
+  font-size: 20px;
+}
+.grid-container > div:active{
+   transform: translateY(5px);
+   box-shadow: 0px 5px 0px var(--keypadBackground) !important;
+
+}
+
+.reset,
+.equal {
+  grid-column-end: span 2;
+  /* color: var(--delResetText) !important; */
+  /* font-size: 20px !important; */
+}
+.equal{
+  color: var(--equalTheme3);
+}
+
+#input {
+  grid-column-end: span 4;
+  height: 60px;
+  font-size: 36px;
+  background-color: var(--screenBackground) !important;
+  color: var(--keyInput);
+  border-color: var(--screenBackground) !important;
+  border: 0px none;
+  padding-right: 20px;
+}
+
+#inputContainer {
+  background-color: var(--screenBlue) !important;
+  padding: 0%;
+  margin: 0%;
+}
+
+.texto {
+  grid-column-end: span 1;
+  color: var(--keyInput) !important;
+}
+#theme {
+  grid-column-end: span 1;
+}
+
+
+
+
+
+/* Remove Arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
