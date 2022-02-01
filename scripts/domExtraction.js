@@ -84,6 +84,7 @@ reset.addEventListener("click", (e) => {
   input.value = "";
 });
 floatPoint.addEventListener("click", (e) => {
+  console.log("punto");
   if (!input.value.includes(".")) {
     input.value += ".";
   }
