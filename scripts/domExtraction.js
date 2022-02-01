@@ -50,12 +50,13 @@ operators.forEach((signo) => {
         operador = "/";
         break;
     }
-    console.log(operador);
+    
     if (firstValue == 0) {
       let value = input.value;
       firstValue = parseFloat(value.replace(/[^0-9-.]/g, ""));
       input.value = "";
     }
+    console.log("firstVAlue", firstValue);
     
   });
 });
@@ -89,15 +90,15 @@ floatPoint.addEventListener("click", (e) => {
 });
 
 const setBackground = () => {
-  console.log(localStorage);
+ 
   if (localStorage.getItem("config") === null) {
     setTheme("theme-one", 1);
   } else {
     let config = localStorage.getItem("config");
     config = JSON.parse(config);
-    console.log("config", config);
+    /* console.log("config", config); */
     let { theme, id } = config;
-    console.log("themeName,id", theme, id);
+    /* console.log("themeName,id", theme, id); */
     setTheme(theme, id);
   }
 };
@@ -121,7 +122,7 @@ function setTheme(themeName, id) {
       option3.checked = true;
       break;
   }
-  console.log("localStorage", localStorage);
+  /* console.log("localStorage", localStorage); */
   localStorage.setItem("config", JSON.stringify(config));
   document.documentElement.className = themeName;
 }
