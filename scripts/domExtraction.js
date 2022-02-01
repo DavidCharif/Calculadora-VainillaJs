@@ -7,72 +7,104 @@ let reset = document.querySelector(".reset");
 let equal = document.querySelector(".equal");
 let floatPoint = document.querySelector(".punto");
 let input = document.querySelector("#input");
-
+let clicked = false;
 //Inicializacion Global variables
 //string
 let operador = "";
+let string = "";
 //int
 let firstValue = 0;
-let secondValue = 0;
+/* let secondValue = 0; */
 //bool
-let resultPress = false;
-
-
-
+/* let resultPress = false; */
 
 //Add event listener to numbers
 number.forEach((element) => {
   element.addEventListener("click", (e) => {
-    if ((resultPress)) {
+    /* if ((resultPress)) {
       input.value = "";
       resultPress = false;
-    } else {
-      let inputNumber = element.getAttribute("data-value");
-      input.value += inputNumber;
-    }
+    } else { */
+    let inputNumber = element.getAttribute("data-value");
+    input.value += inputNumber;
   });
 });
-
-operators.forEach((signo) => {
+/* }) */ operators.forEach((signo) => {
   signo.addEventListener("click", (e) => {
+    clicked = true;
+    console.log(`clicked`, clicked);
+
     let data = signo.getAttribute("data-value");
     switch (data) {
       case "1":
-        operador = "+";
+        operador = " + ";
         break;
       case "2":
-        operador = "-";
+        operador = " - ";
         break;
       case "3":
-        operador = "*";
+        operador = " * ";
         break;
       case "4":
-        operador = "/";
+        operador = " / ";
         break;
     }
-    
-    if (firstValue == 0) {
-      let value = input.value;
-      firstValue = parseFloat(value.replace(/[^0-9-.]/g, ""));
-      input.value = "";
-    }
-    console.log("firstVAlue", firstValue);
-    
+ /*    if (string.length == 0) {
+      string += "0 " + operador;
+    } else {
+      string += operador;
+    } */
+
+    loadToString(clicked);
   });
 });
 
-equal.addEventListener("click", (e) => {
-  secondValue = parseFloat(input.value);
-  console.log("secondValue", secondValue);
+const loadToString = (bool) => {
+  let value = input.value;
+  console.log("value", value);
+  firstValue = parseFloat(value.replace(/[^0-9-.]/g, ""));
+  /* parseFloat(value.replace(/[^0-9-.]/g, "")); */
+  console.log("first value", firstValue);
+  string += `${firstValue}`;
+  if(bool){
+    string += `${operador}`
+  }
+  
+  console.log("string desde clicked", string);
+  firstValue = 0;
+  input.value = "";
+  bool = false;
+};
 
-  let resultado = eval(`${firstValue} ${operador} ${secondValue}`);
+/* 
+   if(secondValue !== 0){
+      string = `${firstValue} ${operador} ${secondValue}`
+   }
+    console.log("firstVAlue", firstValue);
+ */
+
+const operacion = (str) => {
+  x = eval(str);
+  console.log("eval(str", eval(str));
+  return x;
+};
+
+equal.addEventListener("click", (e) => {
+  /*   console.log("clicked fuera de los operadores" ,  clicked); */
+  /*   secondValue = parseFloat(input.value);
+  console.log("secondValue", secondValue);
+ 
+  let resultado = eval(`${firstValue} ${operador} ${secondValue}`); */
+  loadToString(false)
+  console.log("string", string);
+
+  resultado = operacion(string);
+  string = "";
 
   console.log("Resultado", resultado);
 
   resultado = resultado.toLocaleString();
   input.value = resultado;
-  firstValue = 0;
-  resultPress = true;
 });
 
 del.addEventListener("click", (e) => {
@@ -80,8 +112,9 @@ del.addEventListener("click", (e) => {
 });
 reset.addEventListener("click", (e) => {
   firstValue = 0;
-  secondValue = 0;
+  /* secondValue = 0; */
   input.value = "";
+  string = ""
 });
 floatPoint.addEventListener("click", (e) => {
   console.log("punto");
@@ -91,7 +124,6 @@ floatPoint.addEventListener("click", (e) => {
 });
 
 const setBackground = () => {
- 
   if (localStorage.getItem("config") === null) {
     setTheme("theme-one", 1);
   } else {
@@ -103,7 +135,6 @@ const setBackground = () => {
     setTheme(theme, id);
   }
 };
-
 function setTheme(themeName, id) {
   let config = {
     theme: themeName,
