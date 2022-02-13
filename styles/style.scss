@@ -197,4 +197,75 @@
     }
   }
   
+  
   /* Firefox */
+  
+  .tw-toggle {
+  /* background: #95A5A6; */
+  display: inline-block;
+  padding: 2px 3px;
+  border-radius: 20px;
+  position: relative;
+  border: 2px solid #95A5A6;
+  height: 27px;
+  width: 70px;
+
+  label {
+    text-align: center;
+    font-family: sans-serif;
+    display: inline-block;
+    color: #95A5A6;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    text-align: center;
+    padding: 2px 3px;
+    font-size: 15px;
+
+    /* cursor: pointer; */
+  }
+
+  input {
+    /* display: none; */
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    cursor: pointer;
+    
+  }
+
+  span {
+    height: 21px;
+    width: 21px;
+    line-height: 21px;
+    border-radius: 50%;
+    background: #fff;
+    display: block;
+    position: absolute;
+    left: 22px;
+    top: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  input {
+    &[value="false"]:checked ~ span {
+      background: #e74c3c;
+      left: 2px;
+      color: #fff;
+    }
+
+    &[value="true"]:checked ~ span {
+      background: #27ae60;
+      left: 40px;
+    }
+
+    &[value="-1"]:checked ~ span {
+      background: #95A5A6;
+      left: 20px;
+    }
+
+    &[value="false"]:checked + label, &[value="true"]:checked + label, &[value="-1"]:checked + label {
+      color: #fff;
+    }
+  }
+}
